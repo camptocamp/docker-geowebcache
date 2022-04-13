@@ -1,11 +1,13 @@
 # Docker image for GeoWebCache
 
-A docker image that runs GeoWebCache version 1.20.1
+A docker image that runs GeoWebCache
+
+https://hub.docker.com/r/camptocamp/geowebcache
 
 ## To run
 
 ```bash
-cd docker-webcache
+cd docker-geowebcache
 make build
 docker run -p 8600:8080 camptocamp/geowebcache:latest
 ```
@@ -18,6 +20,7 @@ This image uses two volumes:
  * The first one is `/mnt/geowebcache_datadir` which hosts the `geowebcache.xml` config file. A default one will be created at startup if empty.
  * The second one is `/mnt/geowebcache_tiles` where the tile cache resides.
 
+Example usage:
 ```bash
 mkdir -p $HOME/data/
 
