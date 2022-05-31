@@ -6,6 +6,9 @@ on:
   schedule:
     - cron: "30 3 * * 2"
 
+env:
+  HAS_SECRETS: ${{ secrets.HAS_SECRETS }}
+
 jobs:
   rebuild:
     runs-on: ubuntu-20.04
@@ -15,7 +18,6 @@ jobs:
       fail-fast: false
       matrix:
         branch:
-          - "jetty-openshift-2.20.1"
           - master
 
     steps:
@@ -38,7 +40,7 @@ jobs:
 
       - run: make pull
       - run: make build
-      - run: make acceptance
 
       - name: Publish
         run: c2cciutils-publish --type=rebuild --branch=${{matrix.branch}}
+        if: env.HAS_SECRETS == 'HAS_SECRETS'
